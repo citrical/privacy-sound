@@ -35,3 +35,20 @@ COPY docker/apache/vhost.conf /etc/apache2/sites-available/privacy-sound.conf
 
 # Activa nuestro sitio y desactiva el sitio por defecto
 RUN a2ensite privacy-sound.conf && a2dissite 000-default.conf
+
+# Copiar código fuente
+COPY src/ /var/www/html/
+
+# Permisos
+RUN chown -R www-data:www-data /var/www/html \
+    && chmod -R 755 /var/www/html/storage \
+    && chmod -R 755 /var/www/html/bootstrap/cache
+
+# Instalar dependencias de Composer en producción
+RUN composer install --no-dev --optimize-autoloader --working-dir=/var/www/html
+
+# Ejecutar migraciones y seeders al arrancar
+RUN php /var/www/html/artisan migrate --force \
+    && php /var/www/html/artisan db:seed --force \
+    && php /var/www/html/artisan config:cache \
+    && php /var/www/html/artisan route:cache
