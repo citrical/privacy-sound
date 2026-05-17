@@ -63,15 +63,24 @@ class AudioController extends Controller
     }
 
     public function stream(Audio $audio)
-{
-    if ($audio->user_id !== auth()->id()) {
-        abort(403);
+    {
+        if ($audio->user_id !== auth()->id()) {
+            abort(403);
+        }
+
+        $path = Storage::disk('audios')->path($audio->stored_filename);
+
+        return response()->file($path, [
+            'Content-Type' => $audio->mime_type,
+        ]);
     }
 
-    $path = Storage::disk('audios')->path($audio->stored_filename);
+    public function show(Audio $audio)
+    {
+        if ($audio->user_id !== auth()->id()) {
+            abort(403);
+        }
 
-    return response()->file($path, [
-        'Content-Type' => $audio->mime_type,
-    ]);
-}
+        return view('audios.show', compact('audio'));
+    }
 }
