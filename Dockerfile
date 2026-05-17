@@ -39,16 +39,18 @@ RUN a2ensite privacy-sound.conf && a2dissite 000-default.conf
 # Copiar código fuente
 COPY src/ /var/www/html/
 
+# Instalar dependencias de Composer en producción
+RUN composer install --no-dev --optimize-autoloader --working-dir=/var/www/html
+
 # Permisos
 RUN chown -R www-data:www-data /var/www/html \
     && chmod -R 755 /var/www/html/storage \
     && chmod -R 755 /var/www/html/bootstrap/cache
 
-# Instalar dependencias de Composer en producción
-RUN composer install --no-dev --optimize-autoloader --working-dir=/var/www/html
+# Entrypoint
+COPY docker/entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
 
-# Ejecutar migraciones y seeders al arrancar
-RUN php /var/www/html/artisan migrate --force \
-    && php /var/www/html/artisan db:seed --force \
-    && php /var/www/html/artisan config:cache \
-    && php /var/www/html/artisan route:cache
+EXPOSE 80
+
+ENTRYPOINT ["/entrypoint.sh"]
