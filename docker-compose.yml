@@ -1,6 +1,6 @@
 services:
   app:
-    image: privacy-sound
+    image: privacy-sound:latest
     build:
       context: .
       dockerfile: Dockerfile
