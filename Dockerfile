@@ -27,6 +27,9 @@ RUN docker-php-ext-install \
     curl \
     zip
 
+# Copiar configuración PHP personalizada
+COPY docker/php/php.ini /usr/local/etc/php/conf.d/custom.ini
+
 # Instala Composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
