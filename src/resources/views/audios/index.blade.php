@@ -42,7 +42,8 @@
                 <div class="p-6">
                     <h3 class="text-lg font-medium text-gray-900 mb-4">Mis archivos</h3>
                     @forelse ($audios as $audio)
-                        <div class="flex items-center justify-between py-3 border-b last:border-0">
+                    <div class="py-4 border-b last:border-0">
+                        <div class="flex items-center justify-between mb-2">
                             <div>
                                 <p class="font-medium text-gray-900">{{ $audio->original_filename }}</p>
                                 <p class="text-sm text-gray-500">
@@ -63,9 +64,17 @@
                                 </x-danger-button>
                             </form>
                         </div>
-                    @empty
-                        <p class="text-gray-500">No tienes audios subidos todavía.</p>
-                    @endforelse
+                        <audio
+                            controls
+                            class="w-full mt-2"
+                            src="{{ route('audios.stream', $audio) }}"
+                        >
+                            Tu navegador no soporta el reproductor de audio.
+                        </audio>
+                    </div>
+                @empty
+                    <p class="text-gray-500">No tienes audios subidos todavía.</p>
+                @endforelse
                 </div>
             </div>
 
