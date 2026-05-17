@@ -20,6 +20,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/audios', [AudioController::class, 'index'])->name('audios.index');
     Route::post('/audios', [AudioController::class, 'store'])->name('audios.store');
     Route::delete('/audios/{audio}', [AudioController::class, 'destroy'])->name('audios.destroy');
+    Route::get('/audios/{audio}/stream', [AudioController::class, 'stream'])->name('audios.stream');
 });
 
 require __DIR__.'/auth.php';
