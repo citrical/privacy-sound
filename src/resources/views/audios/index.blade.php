@@ -53,6 +53,9 @@
                                     &middot;
                                     <span class="capitalize">{{ $audio->status }}</span>
                                 </p>
+                                <a href="{{ route('audios.show', $audio) }}" class="text-sm text-indigo-600 hover:text-indigo-800 font-medium">
+                                    Editar
+                                </a>
                             </div>
                             <form action="{{ route('audios.destroy', $audio) }}" method="POST">
                                 @csrf
