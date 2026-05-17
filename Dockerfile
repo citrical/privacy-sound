@@ -39,6 +39,9 @@ RUN a2ensite privacy-sound.conf && a2dissite 000-default.conf
 # Copiar código fuente
 COPY src/ /var/www/html/
 
+# Compilar assets frontend
+RUN cd /var/www/html && npm install && npm run build
+
 # Instalar dependencias de Composer en producción
 RUN composer install --no-dev --optimize-autoloader --working-dir=/var/www/html
 
