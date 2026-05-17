@@ -38,6 +38,15 @@ return [
             'report' => false,
         ],
 
+      'audios' => [
+            'driver' => 'local',
+            'root' => storage_path('app/private/audios'),
+            'serve' => true,
+            'url' => env('APP_URL') . '/audio-files',
+            'throw' => false,
+            'report' => false,
+        ],
+
         'public' => [
             'driver' => 'local',
             'root' => storage_path('app/public'),
