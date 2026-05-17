@@ -61,4 +61,17 @@ class AudioController extends Controller
         return redirect()->route('audios.index')
             ->with('success', 'Audio eliminado correctamente.');
     }
+
+    public function stream(Audio $audio)
+{
+    if ($audio->user_id !== auth()->id()) {
+        abort(403);
+    }
+
+    $path = Storage::disk('audios')->path($audio->stored_filename);
+
+    return response()->file($path, [
+        'Content-Type' => $audio->mime_type,
+    ]);
+}
 }
