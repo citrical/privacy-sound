@@ -60,6 +60,19 @@
                 </div>
             </div>
 
+            {{-- Descarga --}}
+            @if ($audio->isProcessed())
+                <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg mt-6">
+                    <div class="p-6">
+                        <h3 class="text-lg font-medium text-gray-900 mb-4">Audio procesado</h3>
+                        <a href="{{ route('audios.download', $audio) }}"
+                        class="inline-flex items-center px-4 py-2 bg-green-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-green-500 transition ease-in-out duration-150">
+                            ⬇ Descargar audio censurado
+                        </a>
+                    </div>
+                </div>
+            @endif
+
         </div>
     </div>
 
