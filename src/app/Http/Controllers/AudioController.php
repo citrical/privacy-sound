@@ -182,4 +182,22 @@ class AudioController extends Controller
             'Content-Type' => $audio->mime_type,
         ]);
     }
+
+    public function download(Audio $audio)
+    {
+        if ($audio->user_id !== auth()->id()) {
+            abort(403);
+        }
+
+        if (!$audio->processed_filename) {
+            abort(404);
+        }
+
+        $path = Storage::disk('audios')->path($audio->processed_filename);
+        $downloadName = 'processed_' . $audio->original_filename;
+
+        return response()->download($path, $downloadName, [
+            'Content-Type' => $audio->mime_type,
+        ]);
+    }
 }
