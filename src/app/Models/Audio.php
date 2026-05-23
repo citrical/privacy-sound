@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 #[Fillable(['user_id', 'original_filename', 'stored_filename', 'mime_type', 'size', 'status', 'processed_filename'])]
 class Audio extends Model
@@ -25,6 +26,11 @@ class Audio extends Model
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function segments(): HasMany
+    {
+        return $this->hasMany(Segment::class);
     }
 
     public function isPending(): bool

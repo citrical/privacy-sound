@@ -47,7 +47,7 @@
             {{-- Formulario de procesamiento --}}
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6">
-                    <form id="process-form" action="#" method="POST">
+                    <form id="process-form" action="{{ route('audios.process', $audio) }}" method="POST">
                         @csrf
                         <input type="hidden" name="regions" id="regions-input" value="[]">
                         <x-primary-button id="btn-process">
@@ -60,8 +60,34 @@
                 </div>
             </div>
 
+            {{-- Descarga --}}
+            @if ($audio->isProcessed())
+                <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg mt-6">
+                    <div class="p-6">
+                        <h3 class="text-lg font-medium text-gray-900 mb-4">Audio procesado</h3>
+                        <a href="{{ route('audios.download', $audio) }}"
+                        class="inline-flex items-center px-4 py-2 bg-green-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-green-500 transition ease-in-out duration-150">
+                            ⬇ Descargar audio censurado
+                        </a>
+                    </div>
+                </div>
+            @endif
+
         </div>
     </div>
+
+    {{-- Mensajes --}}
+    @if (session('success'))
+        <div class="mb-4 p-4 bg-green-100 text-green-700 rounded-lg">
+            {{ session('success') }}
+        </div>
+    @endif
+
+    @if (session('error'))
+        <div class="mb-4 p-4 bg-red-100 text-red-700 rounded-lg">
+            {{ session('error') }}
+        </div>
+    @endif
 
     @push('scripts')
 @vite('resources/js/audio-editor.js')
@@ -73,7 +99,7 @@
         container: '#waveform',
         waveColor: '#6b7280',
         progressColor: '#F24B4B',
-        url: '{{ route('audios.stream', $audio) }}',
+        url: '{{ $audio->isProcessed() ? route('audios.stream-processed', $audio) : route('audios.stream', $audio) }}',
         plugins: [regions, timeline],
     })
 
