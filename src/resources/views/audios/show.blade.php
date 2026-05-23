@@ -47,7 +47,7 @@
             {{-- Formulario de procesamiento --}}
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6">
-                    <form id="process-form" action="#" method="POST">
+                    <form id="process-form" action="{{ route('audios.process', $audio) }}" method="POST">
                         @csrf
                         <input type="hidden" name="regions" id="regions-input" value="[]">
                         <x-primary-button id="btn-process">
@@ -73,7 +73,7 @@
         container: '#waveform',
         waveColor: '#6b7280',
         progressColor: '#F24B4B',
-        url: '{{ route('audios.stream', $audio) }}',
+        url: '{{ $audio->isProcessed() ? route('audios.stream-processed', $audio) : route('audios.stream', $audio) }}',
         plugins: [regions, timeline],
     })
 

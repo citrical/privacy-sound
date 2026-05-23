@@ -22,6 +22,8 @@ Route::middleware('auth')->group(function () {
     Route::delete('/audios/{audio}', [AudioController::class, 'destroy'])->name('audios.destroy');
     Route::get('/audios/{audio}/stream', [AudioController::class, 'stream'])->name('audios.stream');
     Route::get('/audios/{audio}', [AudioController::class, 'show'])->name('audios.show');
+    Route::post('/audios/{audio}/process', [AudioController::class, 'process'])->name('audios.process');
+    Route::get('/audios/{audio}/stream-processed', [AudioController::class, 'streamProcessed'])->name('audios.stream-processed');
 });
 
 require __DIR__.'/auth.php';
