@@ -18,6 +18,11 @@
                     <x-nav-link :href="route('audios.index')" :active="request()->routeIs('audios.*')">
                         {{ __('Mis Audios') }}
                     </x-nav-link>
+                    @if (Auth::user()->isAdmin())
+                        <x-nav-link :href="route('admin.index')" :active="request()->routeIs('admin.*')">
+                            {{ __('Administración') }}
+                        </x-nav-link>
+                    @endif
                 </div>
             </div>
 
@@ -76,6 +81,11 @@
             <x-responsive-nav-link :href="route('audios.index')" :active="request()->routeIs('audios.*')">
                 {{ __('Mis Audios') }}
             </x-responsive-nav-link>
+            @if (Auth::user()->isAdmin())
+                <x-responsive-nav-link :href="route('admin.index')" :active="request()->routeIs('admin.*')">
+                    {{ __('Administración') }}
+                </x-responsive-nav-link>
+            @endif
         </div>
 
         <!-- Responsive Settings Options -->
