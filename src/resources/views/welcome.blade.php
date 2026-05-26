@@ -66,14 +66,74 @@
                 </div>
 
                 {{-- Waveform --}}
-                <div class="w-full opacity-20 pointer-events-none">
+                {{-- Waveform animada --}}
+                <div class="w-full pointer-events-none overflow-hidden">
                     <svg viewBox="0 0 1200 80" xmlns="http://www.w3.org/2000/svg" class="w-full">
-                        <polyline
-                            points="0,40 40,40 50,15 60,65 70,5 80,75 90,20 100,60 110,25 120,55 130,35 140,50 150,10 160,70 170,40 200,40 210,20 220,60 230,15 240,65 250,30 260,55 270,40 300,40 310,20 320,60 330,25 340,55 350,40 380,40 390,15 400,65 410,35 420,50 430,40 460,40 470,20 480,60 490,10 500,70 510,40 540,40 550,30 560,55 570,20 580,60 590,40 620,40 630,15 640,65 650,25 660,55 670,40 700,40 710,35 720,50 730,20 740,60 750,40 780,40 790,20 800,60 810,30 820,55 830,40 860,40 870,15 880,65 890,25 900,55 910,40 940,40 950,20 960,60 970,35 980,50 990,40 1020,40 1030,20 1040,60 1050,15 1060,65 1070,40 1100,40 1110,30 1120,55 1130,25 1140,55 1150,40 1200,40"
-                            fill="none"
-                            stroke="#F24B4B"
-                            stroke-width="2"
-                        />
+                        <style>
+                            .wave-bar { transform-origin: center; animation: pulse-bar 1.2s ease-in-out infinite; }
+                            .wave-bar:nth-child(2)  { animation-delay: 0.1s; }
+                            .wave-bar:nth-child(3)  { animation-delay: 0.2s; }
+                            .wave-bar:nth-child(4)  { animation-delay: 0.3s; }
+                            .wave-bar:nth-child(5)  { animation-delay: 0.4s; }
+                            .wave-bar:nth-child(6)  { animation-delay: 0.5s; }
+                            .wave-bar:nth-child(7)  { animation-delay: 0.6s; }
+                            .wave-bar:nth-child(8)  { animation-delay: 0.7s; }
+                            .wave-bar:nth-child(9)  { animation-delay: 0.8s; }
+                            .wave-bar:nth-child(10) { animation-delay: 0.9s; }
+                            .wave-bar:nth-child(11) { animation-delay: 1.0s; }
+                            .wave-bar:nth-child(12) { animation-delay: 1.1s; }
+                            .wave-bar:nth-child(13) { animation-delay: 0.05s; }
+                            .wave-bar:nth-child(14) { animation-delay: 0.15s; }
+                            .wave-bar:nth-child(15) { animation-delay: 0.25s; }
+                            .wave-bar:nth-child(16) { animation-delay: 0.35s; }
+                            .wave-bar:nth-child(17) { animation-delay: 0.45s; }
+                            .wave-bar:nth-child(18) { animation-delay: 0.55s; }
+                            .wave-bar:nth-child(19) { animation-delay: 0.65s; }
+                            .wave-bar:nth-child(20) { animation-delay: 0.75s; }
+                            @keyframes pulse-bar {
+                                0%, 100% { transform: scaleY(0.3); opacity: 0.2; }
+                                50%       { transform: scaleY(1);   opacity: 0.6; }
+                            }
+                        </style>
+                        <rect class="wave-bar" x="20"   y="10" width="6" height="60" rx="3" fill="#F24B4B"/>
+                        <rect class="wave-bar" x="50"   y="20" width="6" height="40" rx="3" fill="#F24B4B"/>
+                        <rect class="wave-bar" x="80"   y="5"  width="6" height="70" rx="3" fill="#F24B4B"/>
+                        <rect class="wave-bar" x="110"  y="15" width="6" height="50" rx="3" fill="#F25A38"/>
+                        <rect class="wave-bar" x="140"  y="25" width="6" height="30" rx="3" fill="#F24B4B"/>
+                        <rect class="wave-bar" x="170"  y="8"  width="6" height="64" rx="3" fill="#F24B4B"/>
+                        <rect class="wave-bar" x="200"  y="18" width="6" height="44" rx="3" fill="#F25A38"/>
+                        <rect class="wave-bar" x="230"  y="3"  width="6" height="74" rx="3" fill="#F24B4B"/>
+                        <rect class="wave-bar" x="260"  y="20" width="6" height="40" rx="3" fill="#F24B4B"/>
+                        <rect class="wave-bar" x="290"  y="12" width="6" height="56" rx="3" fill="#F25A38"/>
+                        <rect class="wave-bar" x="320"  y="28" width="6" height="24" rx="3" fill="#F24B4B"/>
+                        <rect class="wave-bar" x="350"  y="6"  width="6" height="68" rx="3" fill="#F24B4B"/>
+                        <rect class="wave-bar" x="380"  y="16" width="6" height="48" rx="3" fill="#F25A38"/>
+                        <rect class="wave-bar" x="410"  y="22" width="6" height="36" rx="3" fill="#F24B4B"/>
+                        <rect class="wave-bar" x="440"  y="4"  width="6" height="72" rx="3" fill="#F24B4B"/>
+                        <rect class="wave-bar" x="470"  y="14" width="6" height="52" rx="3" fill="#F25A38"/>
+                        <rect class="wave-bar" x="500"  y="24" width="6" height="32" rx="3" fill="#F24B4B"/>
+                        <rect class="wave-bar" x="530"  y="8"  width="6" height="64" rx="3" fill="#F24B4B"/>
+                        <rect class="wave-bar" x="560"  y="18" width="6" height="44" rx="3" fill="#F25A38"/>
+                        <rect class="wave-bar" x="590"  y="2"  width="6" height="76" rx="3" fill="#F24B4B"/>
+                        <rect class="wave-bar" x="620"  y="20" width="6" height="40" rx="3" fill="#F24B4B"/>
+                        <rect class="wave-bar" x="650"  y="10" width="6" height="60" rx="3" fill="#F25A38"/>
+                        <rect class="wave-bar" x="680"  y="26" width="6" height="28" rx="3" fill="#F24B4B"/>
+                        <rect class="wave-bar" x="710"  y="6"  width="6" height="68" rx="3" fill="#F24B4B"/>
+                        <rect class="wave-bar" x="740"  y="16" width="6" height="48" rx="3" fill="#F25A38"/>
+                        <rect class="wave-bar" x="770"  y="22" width="6" height="36" rx="3" fill="#F24B4B"/>
+                        <rect class="wave-bar" x="800"  y="8"  width="6" height="64" rx="3" fill="#F24B4B"/>
+                        <rect class="wave-bar" x="830"  y="18" width="6" height="44" rx="3" fill="#F25A38"/>
+                        <rect class="wave-bar" x="860"  y="4"  width="6" height="72" rx="3" fill="#F24B4B"/>
+                        <rect class="wave-bar" x="890"  y="14" width="6" height="52" rx="3" fill="#F24B4B"/>
+                        <rect class="wave-bar" x="920"  y="24" width="6" height="32" rx="3" fill="#F25A38"/>
+                        <rect class="wave-bar" x="950"  y="8"  width="6" height="64" rx="3" fill="#F24B4B"/>
+                        <rect class="wave-bar" x="980"  y="20" width="6" height="40" rx="3" fill="#F24B4B"/>
+                        <rect class="wave-bar" x="1010" y="10" width="6" height="60" rx="3" fill="#F25A38"/>
+                        <rect class="wave-bar" x="1040" y="26" width="6" height="28" rx="3" fill="#F24B4B"/>
+                        <rect class="wave-bar" x="1070" y="6"  width="6" height="68" rx="3" fill="#F24B4B"/>
+                        <rect class="wave-bar" x="1100" y="16" width="6" height="48" rx="3" fill="#F25A38"/>
+                        <rect class="wave-bar" x="1130" y="12" width="6" height="56" rx="3" fill="#F24B4B"/>
+                        <rect class="wave-bar" x="1160" y="22" width="6" height="36" rx="3" fill="#F24B4B"/>
                     </svg>
                 </div>
 
