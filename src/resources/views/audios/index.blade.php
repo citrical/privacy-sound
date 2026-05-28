@@ -53,19 +53,25 @@
                                     &middot;
                                     <span class="capitalize">{{ $audio->status }}</span>
                                 </p>
-                                <a href="{{ route('audios.show', $audio) }}" class="text-sm text-indigo-600 hover:text-indigo-800 font-medium">
-                                    Editar
-                                </a>
                             </div>
-                            <form action="{{ route('audios.destroy', $audio) }}" method="POST">
-                                @csrf
-                                @method('DELETE')
-                                <x-danger-button
-                                    onclick="return confirm('¿Eliminar este audio?')"
-                                >
-                                    Eliminar
-                                </x-danger-button>
-                            </form>
+                            {{-- Contenedor de acciones (Botones alineados) --}}
+                            <div class="flex items-center gap-2">
+                                <a href="{{ route('audios.show', $audio) }}">
+                                    <x-primary-button type="button">
+                                        Editar
+                                    </x-primary-button>
+                                </a>
+
+                                <form action="{{ route('audios.destroy', $audio) }}" method="POST">
+                                    @csrf
+                                    @method('DELETE')
+                                    <x-danger-button
+                                        onclick="return confirm('¿Eliminar este audio?')"
+                                    >
+                                        Eliminar
+                                    </x-danger-button>
+                                </form>
+                            </div>
                         </div>
                         <audio
                             controls
