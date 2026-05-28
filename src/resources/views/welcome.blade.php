@@ -16,12 +16,11 @@
 
                 {{-- Logo --}}
                 <div class="flex justify-center mb-10">
-                    <img src="{{ asset('images/privacy-sound-logo.png') }}" alt="Privacy Sound" class="h-16 w-auto">
+                    <img src="{{ asset('images/privacy_sound_logo.svg') }}" alt="Privacy Sound" class="h-20 w-auto">
                 </div>
 
                 {{-- Texto central --}}
                 <div class="text-center mb-10">
-                    <p class="text-xs uppercase tracking-widest text-gray-400 mb-4">Privacidad en audio</p>
                     <h1 class="text-4xl font-light text-gray-900 leading-tight mb-4" style="font-family: 'Roboto', sans-serif;">
                         Censura lo que no debe escucharse
                     </h1>
