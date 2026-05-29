@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Audio;
 use App\Models\User;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\DB;
 
 class AdminController extends Controller
 {
@@ -84,5 +85,26 @@ class AdminController extends Controller
 
         return redirect()->route('admin.index')
             ->with('success', 'Fichero huérfano eliminado correctamente.');
+    }
+
+    public function purgeProcessed()
+    {
+        $count = 0;
+
+        DB::transaction(function () use (&$count) {
+            $audios = Audio::whereNotNull('processed_filename')->get();
+
+            foreach ($audios as $audio) {
+                Storage::disk('audios')->delete($audio->processed_filename);
+                $audio->update([
+                    'processed_filename' => null,
+                    'status'             => 'pending',
+                ]);
+                $count++;
+            }
+        });
+
+        return redirect()->route('admin.index')
+            ->with('success', "Se han purgado {$count} audios procesados correctamente.");
     }
 }
