@@ -6,6 +6,7 @@ use App\Models\Audio;
 use App\Models\User;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\DB;
+use Devrabiul\ToastMagic\Facades\ToastMagic;
 
 class AdminController extends Controller
 {
@@ -75,16 +76,16 @@ class AdminController extends Controller
 
         $user->delete();
 
-        return redirect()->route('admin.users')
-            ->with('success', 'Usuario eliminado correctamente.');
+        ToastMagic::success('Usuario eliminado correctamente.');
+        return redirect()->route('admin.users');
     }
 
     public function destroyOrphan(string $filename)
     {
         Storage::disk('audios')->delete($filename);
 
-        return redirect()->route('admin.index')
-            ->with('success', 'Fichero huérfano eliminado correctamente.');
+        ToastMagic::success('Fichero huérfano eliminado correctamente.');
+        return redirect()->route('admin.index');
     }
 
     public function purgeProcessed()
@@ -104,7 +105,7 @@ class AdminController extends Controller
             }
         });
 
-        return redirect()->route('admin.index')
-            ->with('success', "Se han purgado {$count} audios procesados correctamente.");
+        ToastMagic::success("Se han purgado {$count} audios procesados correctamente.");
+        return redirect()->route('admin.index');
     }
 }

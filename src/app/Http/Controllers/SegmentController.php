@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Segment;
+use Devrabiul\ToastMagic\Facades\ToastMagic;
 
 class SegmentController extends Controller
 {
@@ -14,7 +15,7 @@ class SegmentController extends Controller
 
         $segment->delete();
 
-        return redirect()->route('audios.show', $segment->audio_id)
-            ->with('success', 'Segmento eliminado correctamente.');
+        ToastMagic::success('Segmento eliminado correctamente.');
+        return redirect()->route('audios.show', $segment->audio_id);
     }
 }

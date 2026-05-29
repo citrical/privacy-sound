@@ -7,6 +7,7 @@ use App\Models\Audio;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
+use Devrabiul\ToastMagic\Facades\ToastMagic;
 
 class AudioController extends Controller
 {
@@ -41,8 +42,8 @@ class AudioController extends Controller
             'status'            => 'pending',
         ]);
 
-        return redirect()->route('audios.index')
-            ->with('success', '¡Audio subido correctamente!');
+        ToastMagic::success('¡Audio subido correctamente!');
+        return redirect()->route('audios.index');
     }
 
     public function destroy(Audio $audio)
@@ -59,8 +60,8 @@ class AudioController extends Controller
 
         $audio->delete();
 
-        return redirect()->route('audios.index')
-            ->with('success', 'Audio eliminado correctamente.');
+        ToastMagic::success('Audio eliminado correctamente.');
+        return redirect()->route('audios.index');
     }
 
     public function stream(Audio $audio)
@@ -98,8 +99,8 @@ class AudioController extends Controller
         $regions = json_decode($request->regions, true);
 
         if (empty($regions)) {
-            return redirect()->route('audios.show', $audio)
-                ->with('error', 'Debes marcar al menos un segmento.');
+            ToastMagic::error('Debes marcar al menos un segmento.');
+            return redirect()->route('audios.show', $audio);
         }
 
         // Guardar segmentos
@@ -153,8 +154,8 @@ class AudioController extends Controller
 
         if ($returnCode !== 0) {
             $audio->update(['status' => 'failed']);
-            return redirect()->route('audios.show', $audio)
-                ->with('error', 'Error al procesar el audio.');
+            ToastMagic::error('Error al procesar el audio.');
+            return redirect()->route('audios.show', $audio);
         }
 
         $audio->update([
@@ -162,8 +163,9 @@ class AudioController extends Controller
             'processed_filename' => $outputFilename,
         ]);
 
-        return redirect()->route('audios.show', $audio)
-            ->with('success', '¡Audio procesado correctamente!');
+        
+        ToastMagic::success('¡Audio procesado correctamente!');
+        return redirect()->route('audios.show', $audio);
     }
 
     public function streamProcessed(Audio $audio)
@@ -213,8 +215,8 @@ class AudioController extends Controller
 
         $audio->update(['original_filename' => $request->original_filename]);
 
-        return redirect()->route('audios.show', $audio)
-            ->with('success', 'Nombre actualizado correctamente.');
+        ToastMagic::success('Nombre actualizado correctamente.');
+        return redirect()->route('audios.show', $audio);
     }
 
     public function attachTag(Request $request, Audio $audio)
@@ -229,8 +231,8 @@ class AudioController extends Controller
 
         $audio->tags()->syncWithoutDetaching([$request->tag_id]);
 
-        return redirect()->route('audios.show', $audio)
-            ->with('success', 'Etiqueta añadida correctamente.');
+        ToastMagic::success('Etiqueta vinculada correctamente.');
+        return redirect()->route('audios.show', $audio);
     }
 
     public function detachTag(Audio $audio, \App\Models\Tag $tag)
@@ -241,7 +243,7 @@ class AudioController extends Controller
 
         $audio->tags()->detach($tag->id);
 
-        return redirect()->route('audios.show', $audio)
-            ->with('success', 'Etiqueta eliminada correctamente.');
+        ToastMagic::success('Etiqueta desvinculada correctamente.');
+        return redirect()->route('audios.show', $audio);
     }
 }
