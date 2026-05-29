@@ -19,7 +19,7 @@
                         {{ __('Mis Audios') }}
                     </x-nav-link>
                     <x-nav-link :href="route('tags.index')" :active="request()->routeIs('tags.*')">
-                        {{ __('Etiquetas') }}
+                        {{ __('Mis Etiquetas') }}
                     </x-nav-link>
                     @if (Auth::user()->isAdmin())
                         <x-nav-link :href="route('admin.index')" :active="request()->routeIs('admin.*')">
@@ -48,6 +48,12 @@
                         <x-dropdown-link :href="route('profile.edit')">
                             {{ __('Profile') }}
                         </x-dropdown-link>
+
+                        @if (Auth::user()->isAdmin())
+                            <x-dropdown-link :href="route('admin.users')">
+                                {{ __('Gestionar usuarios') }}
+                            </x-dropdown-link>
+                        @endif
 
                         <!-- Authentication -->
                         <form method="POST" action="{{ route('logout') }}">
@@ -85,7 +91,7 @@
                 {{ __('Mis Audios') }}
             </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('tags.index')" :active="request()->routeIs('tags.*')">
-                {{ __('Etiquetas') }}
+                {{ __('Mis Etiquetas') }}
             </x-responsive-nav-link>
             @if (Auth::user()->isAdmin())
                 <x-responsive-nav-link :href="route('admin.index')" :active="request()->routeIs('admin.*')">
@@ -105,6 +111,12 @@
                 <x-responsive-nav-link :href="route('profile.edit')">
                     {{ __('Profile') }}
                 </x-responsive-nav-link>
+
+                @if (Auth::user()->isAdmin())
+                    <x-responsive-nav-link :href="route('admin.users')">
+                        {{ __('Gestionar usuarios') }}
+                    </x-responsive-nav-link>
+                @endif
 
                 <!-- Authentication -->
                 <form method="POST" action="{{ route('logout') }}">

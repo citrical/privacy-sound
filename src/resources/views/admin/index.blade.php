@@ -44,13 +44,7 @@
             {{-- Ficheros huérfanos --}}
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg mb-6">
                 <div class="p-6">
-                    <div class="flex items-center justify-between mb-4">
-                        <h3 class="text-lg font-medium text-gray-900">Ficheros huérfanos</h3>
-                        <a href="{{ route('admin.users') }}"
-                           class="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 transition ease-in-out duration-150">
-                            Gestionar usuarios
-                        </a>
-                    </div>
+                    <h3 class="text-lg font-medium text-gray-900">Ficheros huérfanos</h3>
                     @forelse ($orphanedFiles as $filename)
                         <div class="flex items-center justify-between py-2 border-b last:border-0">
                             <span class="text-sm text-gray-700 font-mono">{{ $filename }}</span>
