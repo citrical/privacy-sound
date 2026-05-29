@@ -200,4 +200,48 @@ class AudioController extends Controller
             'Content-Type' => $audio->mime_type,
         ]);
     }
+
+    public function update(Request $request, Audio $audio)
+    {
+        if ($audio->user_id !== auth()->id()) {
+            abort(403);
+        }
+
+        $request->validate([
+            'original_filename' => ['required', 'string', 'max:255'],
+        ]);
+
+        $audio->update(['original_filename' => $request->original_filename]);
+
+        return redirect()->route('audios.show', $audio)
+            ->with('success', 'Nombre actualizado correctamente.');
+    }
+
+    public function attachTag(Request $request, Audio $audio)
+    {
+        if ($audio->user_id !== auth()->id()) {
+            abort(403);
+        }
+
+        $request->validate([
+            'tag_id' => ['required', 'exists:tags,id'],
+        ]);
+
+        $audio->tags()->syncWithoutDetaching([$request->tag_id]);
+
+        return redirect()->route('audios.show', $audio)
+            ->with('success', 'Etiqueta añadida correctamente.');
+    }
+
+    public function detachTag(Audio $audio, \App\Models\Tag $tag)
+    {
+        if ($audio->user_id !== auth()->id()) {
+            abort(403);
+        }
+
+        $audio->tags()->detach($tag->id);
+
+        return redirect()->route('audios.show', $audio)
+            ->with('success', 'Etiqueta eliminada correctamente.');
+    }
 }

@@ -39,6 +39,20 @@
                 </div>
             </div>
 
+            {{-- Operación transaccional --}}
+            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg mb-6">
+                <div class="p-6">
+                    <h3 class="text-lg font-medium text-gray-900 mb-2">Purgar audios procesados</h3>
+                    <p class="text-sm text-gray-500 mb-4">Elimina todos los ficheros de audio procesados del servidor, liberando espacio. Los audios originales y los registros se conservan.</p>
+                    <form action="{{ route('admin.purge-processed') }}" method="POST">
+                        @csrf
+                        <x-danger-button onclick="return confirm('¿Purgar todos los audios procesados? Esta acción no se puede deshacer.')">
+                            Purgar audios procesados
+                        </x-danger-button>
+                    </form>
+                </div>
+            </div>
+
             {{-- Ficheros huérfanos --}}
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg mb-6">
                 <div class="p-6">
