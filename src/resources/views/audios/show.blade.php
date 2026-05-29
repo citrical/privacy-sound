@@ -13,14 +13,6 @@
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
 
-            {{-- Mensajes --}}
-            @if (session('success'))
-                <div class="mb-4 p-4 bg-green-100 text-green-700 rounded-lg">{{ session('success') }}</div>
-            @endif
-            @if (session('error'))
-                <div class="mb-4 p-4 bg-red-100 text-red-700 rounded-lg">{{ session('error') }}</div>
-            @endif
-
             {{-- Editar nombre --}}
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg mb-6">
                 <div class="p-6">
@@ -61,7 +53,7 @@
                                         <option value="{{ $tag->id }}">{{ $tag->name }}</option>
                                     @endforeach
                                 </select>
-                                <x-secondary-button type="submit">Añadir etiqueta</x-secondary-button>
+                                <x-secondary-button type="submit">Vincular etiqueta</x-secondary-button>
                             </form>
                         @endif
                     </div>
@@ -74,10 +66,10 @@
                     <div id="waveform" class="mb-4"></div>
                     <div class="flex items-center gap-4 mb-4">
                         <button id="btn-play" class="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 transition ease-in-out duration-150">
-                            ▶ Reproducir
+                            Reproducir
                         </button>
                         <button id="btn-add-region" class="inline-flex items-center px-4 py-2 bg-yellow-500 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-yellow-600 transition ease-in-out duration-150">
-                            + Añadir región
+                            Añadir segmento
                         </button>
                         <span id="current-time" class="text-sm text-gray-500">0:00</span>
                     </div>

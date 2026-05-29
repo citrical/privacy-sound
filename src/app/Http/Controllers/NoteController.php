@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Audio;
 use App\Models\Note;
 use Illuminate\Http\Request;
+use Devrabiul\ToastMagic\Facades\ToastMagic;
 
 class NoteController extends Controller
 {
@@ -23,8 +24,8 @@ class NoteController extends Controller
             'content' => $request->content,
         ]);
 
-        return redirect()->route('audios.show', $audio)
-            ->with('success', 'Nota añadida correctamente.');
+        ToastMagic::success('Nota creada correctamente.');
+        return redirect()->route('audios.show', $audio);;
     }
 
     public function destroy(Note $note)
@@ -35,7 +36,7 @@ class NoteController extends Controller
 
         $note->delete();
 
-        return redirect()->route('audios.show', $note->audio_id)
-            ->with('success', 'Nota eliminada correctamente.');
+        ToastMagic::success('Nota eliminada correctamente.');
+        return redirect()->route('audios.show', $note->audio_id);
     }
 }

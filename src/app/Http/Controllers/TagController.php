@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Tag;
 use Illuminate\Http\Request;
+use Devrabiul\ToastMagic\Facades\ToastMagic;
 
 class TagController extends Controller
 {
@@ -25,8 +26,8 @@ class TagController extends Controller
             ['color' => $request->color]
         );
 
-        return redirect()->route('tags.index')
-            ->with('success', 'Etiqueta creada correctamente.');
+        ToastMagic::success('Etiqueta creada correctamente.');
+        return redirect()->route('tags.index');
     }
 
     public function update(Request $request, Tag $tag)
@@ -42,8 +43,8 @@ class TagController extends Controller
 
         $tag->update($request->only('name', 'color'));
 
-        return redirect()->route('tags.index')
-            ->with('success', 'Etiqueta actualizada correctamente.');
+        ToastMagic::success('Etiqueta actualizada correctamente.');
+        return redirect()->route('tags.index');
     }
 
     public function destroy(Tag $tag)
@@ -54,7 +55,7 @@ class TagController extends Controller
 
         $tag->delete();
 
-        return redirect()->route('tags.index')
-            ->with('success', 'Etiqueta eliminada correctamente.');
+        ToastMagic::success('Etiqueta eliminada correctamente.');
+        return redirect()->route('tags.index');
     }
 }
