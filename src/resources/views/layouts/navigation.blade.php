@@ -18,6 +18,9 @@
                     <x-nav-link :href="route('audios.index')" :active="request()->routeIs('audios.*')">
                         {{ __('Mis Audios') }}
                     </x-nav-link>
+                    <x-nav-link :href="route('tags.index')" :active="request()->routeIs('tags.*')">
+                        {{ __('Etiquetas') }}
+                    </x-nav-link>
                     @if (Auth::user()->isAdmin())
                         <x-nav-link :href="route('admin.index')" :active="request()->routeIs('admin.*')">
                             {{ __('Administración') }}
@@ -80,6 +83,9 @@
             </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('audios.index')" :active="request()->routeIs('audios.*')">
                 {{ __('Mis Audios') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('tags.index')" :active="request()->routeIs('tags.*')">
+                {{ __('Etiquetas') }}
             </x-responsive-nav-link>
             @if (Auth::user()->isAdmin())
                 <x-responsive-nav-link :href="route('admin.index')" :active="request()->routeIs('admin.*')">
