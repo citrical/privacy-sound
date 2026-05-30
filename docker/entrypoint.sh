@@ -9,6 +9,9 @@ chown -R www-data:www-data /var/www/html/storage
 chown -R www-data:www-data /var/www/html/bootstrap/cache
 chown www-data:www-data /var/www/html/database/database.sqlite
 
+# Regenerar autoload
+composer dump-autoload --working-dir=/var/www/html
+
 # Caché de configuración y rutas
 php /var/www/html/artisan config:cache
 php /var/www/html/artisan route:cache
