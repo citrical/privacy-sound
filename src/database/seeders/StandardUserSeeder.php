@@ -20,7 +20,7 @@ class StandardUserSeeder extends Seeder
                 'name' => 'Francisco Limón León',
                 'email' => 'flimleo420@g.educaand.es',
                 'password' => Hash::make('TXYRX@2QR9gg'),
-                'role' => 'standard',
+                'role' => 'user',
             ]
         );
     }
