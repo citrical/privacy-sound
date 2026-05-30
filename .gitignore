@@ -1,30 +1,56 @@
-/vendor/
-node_modules/
-npm-debug.log
-yarn-error.log
+# Dependencias
+/src/vendor/
+/src/node_modules/
 
-# Laravel 4 specific
-bootstrap/compiled.php
-app/storage/
-
-# Laravel 5 & Lumen specific
-public/storage
-public/hot
-
-# Laravel 5 & Lumen specific with changed public path
-public_html/storage
-public_html/hot
-
-storage/*.key
+# Entorno
 .env
-Homestead.yaml
-Homestead.json
-/.vagrant
-.phpunit.result.cache
+/src/.env
+/src/.env.*
+!/src/.env.example
 
-/public/build
-/storage/pail
-.env.backup
-.env.production
-.phpactor.json
-auth.json
+# Base de datos local
+/src/database/database.sqlite
+/src/database/database.sqlite-shm
+/src/database/database.sqlite-wal
+
+# Cache y logs de Laravel
+/src/storage/logs/*
+/src/storage/framework/cache/*
+/src/storage/framework/sessions/*
+/src/storage/framework/testing/*
+/src/storage/framework/views/*
+/src/bootstrap/cache/*
+!/src/storage/logs/.gitkeep
+!/src/storage/framework/cache/.gitkeep
+!/src/storage/framework/sessions/.gitkeep
+!/src/storage/framework/views/.gitkeep
+!/src/bootstrap/cache/.gitkeep
+
+# Composer
+/src/composer.phar
+
+# Build de frontend
+/src/public/build/
+/src/public/hot
+/src/public/storage
+
+# Docker local overrides
+docker-compose.override.yml
+
+# Sistema operativo
+.DS_Store
+.DS_Store?
+Thumbs.db
+desktop.ini
+
+# IDEs
+.idea/
+.vscode/
+*.swp
+*.swo
+*.sublime-project
+*.sublime-workspace
+
+# Tests
+/src/.phpunit.cache/
+/src/.phpunit.result.cache

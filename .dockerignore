@@ -1,0 +1,36 @@
+# Dependencias
+src/vendor/
+src/node_modules/
+
+# Entorno
+.env
+src/.env
+src/.env.*
+!src/.env.example
+
+# Base de datos local
+src/database/database.sqlite
+
+# Cache y logs de Laravel
+src/storage/logs/*
+src/storage/framework/cache/*
+src/storage/framework/sessions/*
+src/storage/framework/views/*
+src/bootstrap/cache/*
+
+# Control de versiones
+.git/
+.github/
+
+# Docker
+docker-compose.override.yml
+
+# Sistema operativo
+.DS_Store
+Thumbs.db
+
+# IDEs
+.idea/
+.vscode/
+*.swp
+*.swo

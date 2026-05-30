@@ -1,0 +1,15 @@
+services:
+  app:
+    image: privacy-sound:latest
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: privacy-sound
+    ports:
+      - "8080:80"
+    volumes:
+      - ./src:/var/www/html
+      - ./docker/php/php.ini:/usr/local/etc/php/conf.d/custom.ini
+    environment:
+      APACHE_DOCUMENT_ROOT: /var/www/html/public
+    restart: unless-stopped

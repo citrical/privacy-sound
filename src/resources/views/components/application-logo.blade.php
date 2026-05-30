@@ -1,0 +1,1 @@
+<img src="{{ asset('images/privacy_sound_logo.svg') }}" alt="Privacy Sound" {{ $attributes }}>
